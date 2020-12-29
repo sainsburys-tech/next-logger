@@ -1,6 +1,6 @@
 {
-  "name": "next-log",
-  "version": "0.1.0",
+  "name": "next-logger",
+  "version": "1.0.0",
   "description": "JSON logging patcher for Next.js",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atkinchris/next-log.git"
+    "url": "git+https://github.com/atkinchris/next-logger.git"
   },
   "keywords": [
     "next.js",
@@ -21,9 +21,9 @@
   "author": "Chris Atkin <atkinchris@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/atkinchris/next-log/issues"
+    "url": "https://github.com/atkinchris/next-logger/issues"
   },
-  "homepage": "https://github.com/atkinchris/next-log#readme",
+  "homepage": "https://github.com/atkinchris/next-logger#readme",
   "peerDependencies": {
     "next": ">=9.0.0"
   },

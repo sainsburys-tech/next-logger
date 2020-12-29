@@ -1,4 +1,4 @@
-# next-log
+# next-logger
 
 JSON logging patcher for Next.js
 
@@ -31,17 +31,17 @@ After:
 First, install this package. You can do this with whatever Node package manager you're using in your project.
 
 ```sh
-npm install next-log
+npm install next-logger
 
 # or for Yarn
 
-yarn add next-log
+yarn add next-logger
 ```
 
 Then add a [`NODE_OPTIONS`](https://nextjs.org/docs/api-reference/cli) string to your Next.js start script, to require in the logger.
 
 ```sh
-NODE_OPTIONS='-r next-log' next start
+NODE_OPTIONS='-r next-logger' next start
 ```
 
 ### Adding to `package.json` Scripts
@@ -50,7 +50,7 @@ You can add this directly to your `package.json` scripts, to make it easier to s
 
 ```json
 "scripts": {
-  "start": "NODE_OPTIONS='-r next-log' next start",
+  "start": "NODE_OPTIONS='-r next-logger' next start",
   // ...your other scripts
 },
 ```
