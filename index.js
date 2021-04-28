@@ -3,10 +3,10 @@ const LOGGER_PATH = require('path').join(process.cwd(), 'node_modules', 'next/di
 // eslint-disable-next-line import/no-dynamic-require
 const logger = require(LOGGER_PATH)
 
-const buildJsonLogger = (prefix) => {
+const buildJsonLogger = prefix => {
   // eslint-disable-next-line global-require
   const pino = require('pino')({ name: 'next.js' })
-  const getLogMethod = (method) => {
+  const getLogMethod = method => {
     switch (method) {
       case 'error':
         return pino.error.bind(pino)

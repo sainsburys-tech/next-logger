@@ -4,13 +4,13 @@ const os = require('os')
 
 const execAsync = promisify(exec)
 
-const runScript = async (script) => {
+const runScript = async script => {
   const process = execAsync(`node -r "." -e "${script}"`)
   const result = await process
   return { ...process.child, ...result }
 }
 
-const buildNextJsScript = (method) => `
+const buildNextJsScript = method => `
 require('next/dist/build/output/log').${method}('Message for ${method}')
 `
 
