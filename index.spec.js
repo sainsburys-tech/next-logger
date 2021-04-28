@@ -10,8 +10,8 @@ const runScript = async script => {
   return { ...process.child, ...result }
 }
 
-const buildNextJsScript = method => `
-require('next/dist/build/output/log').${method}('Message for ${method}')
+const buildNextJsScript = (method, log) => `
+require('next/dist/build/output/log').${method}(${log || `'Message for ${method}'`})
 `
 
 const scenarios = [
