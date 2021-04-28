@@ -17,8 +17,9 @@ const buildJsonLogger = prefix => {
     }
   }
 
-  return (...msg) => {
-    getLogMethod(prefix)({ msg: msg.join(', '), prefix })
+  return (...args) => {
+    const message = args.length === 1 ? args[0] : args
+    getLogMethod(prefix)({ prefix }, message)
   }
 }
 
