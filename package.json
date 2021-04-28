@@ -4,7 +4,7 @@
   "description": "JSON logging patcher for Next.js",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "repository": {
     "type": "git",
