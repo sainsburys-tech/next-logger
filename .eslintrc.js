@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['airbnb-base', 'prettier'],
+  extends: ['plugin:jest/recommended', 'airbnb-base', 'prettier'],
 }

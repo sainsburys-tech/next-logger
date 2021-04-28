@@ -4,7 +4,7 @@
   "description": "JSON logging patcher for Next.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -32,10 +32,17 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.6",
+    "jest": "^26.6.3",
     "next": ">=9.0.0",
     "prettier": "^2.2.1"
   },
   "dependencies": {
     "pino": "^6.8.0"
+  },
+  "jest": {
+    "resetMocks": true,
+    "resetModules": true,
+    "errorOnDeprecated": true
   }
 }
