@@ -29,3 +29,9 @@ Object.entries(nextLogger).forEach(([key, value]) => {
     nextLogger[key] = buildJsonLogger(key)
   }
 })
+
+const consoleMethods = ['log', 'debug', 'info', 'warn', 'error']
+consoleMethods.forEach(method => {
+  // eslint-disable-next-line no-console
+  console[method] = buildJsonLogger(method)
+})
