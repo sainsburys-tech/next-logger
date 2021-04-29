@@ -6,8 +6,9 @@ const execAsync = promisify(exec)
 
 const runScript = async script => {
   const process = execAsync(`node -r "." -e "${script}"`)
-  const result = await process
-  return { ...process.child, ...result }
+  const { pid } = process
+  const { stdout, stderr } = await process
+  return { pid, stdout: stdout.trim(), stderr: stderr.trim() }
 }
 
 const buildNextJsScript = (method, payload) => `
@@ -80,7 +81,13 @@ const scenarios = [
 ]
 
 describe.each(scenarios)('%s', (_, script, expected) => {
-  it('prints a JSON formatted log to stdout', async () => {
+  it('prints a JSON style string to stdout', async () => {
+    const { stdout } = await runScript(script)
+
+    expect(stdout).toMatch(/^.*?{.*?}.*?$/ms)
+  })
+
+  it('prints a JSON formatted object to stdout', async () => {
     const { stdout } = await runScript(script)
     const log = JSON.parse(stdout)
 
