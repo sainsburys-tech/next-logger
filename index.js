@@ -1,30 +1,31 @@
 const LOGGER_PATH = require('path').join(process.cwd(), 'node_modules', 'next/dist/build/output/log')
 
 // eslint-disable-next-line import/no-dynamic-require
-const logger = require(LOGGER_PATH)
+const nextLogger = require(LOGGER_PATH)
+const logger = require('pino')({ name: 'next.js' })
 
-const buildJsonLogger = prefix => {
-  // eslint-disable-next-line global-require
-  const pino = require('pino')({ name: 'next.js' })
-  const getLogMethod = method => {
-    switch (method) {
-      case 'error':
-        return pino.error.bind(pino)
-      case 'warn':
-        return pino.warn.bind(pino)
-      default:
-        return pino.info.bind(pino)
-    }
-  }
-
-  return (...args) => {
-    const message = args.length === 1 ? args[0] : args
-    getLogMethod(prefix)({ prefix }, message)
+const getLogMethod = level => {
+  switch (level) {
+    case 'error':
+      return logger.error.bind(logger, { prefix: level })
+    case 'warn':
+      return logger.warn.bind(logger, { prefix: level })
+    default:
+      return logger.info.bind(logger, { prefix: level })
   }
 }
 
-Object.entries(logger).forEach(([key, value]) => {
+const buildJsonLogger = prefix => {
+  const logMethod = getLogMethod(prefix)
+
+  return (...args) => {
+    const message = args.length === 1 ? args[0] : args
+    logMethod(message)
+  }
+}
+
+Object.entries(nextLogger).forEach(([key, value]) => {
   if (typeof value === 'function') {
-    logger[key] = buildJsonLogger(key)
+    nextLogger[key] = buildJsonLogger(key)
   }
 })
