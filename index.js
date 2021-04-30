@@ -1,1 +1,1 @@
-require('./lib/patches/next')
+require('./presets/all')

@@ -67,4 +67,8 @@ const scenarios = [
   ],
 ]
 
+const filterScenarios = (...filters) =>
+  scenarios.filter(scenario => filters.some(filter => scenario[0].startsWith(filter)))
+
 module.exports = scenarios
+module.exports.filterScenarios = filterScenarios
