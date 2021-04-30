@@ -7,6 +7,6 @@ describe('presets', () => {
   })
 
   describe('next-only', () => {
-    scenarioRunner(scenarios.filterScenarios('next.js'), 'next-only')
+    scenarioRunner(scenarios.next, 'next-only')
   })
 })

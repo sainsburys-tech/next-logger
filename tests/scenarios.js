@@ -2,7 +2,7 @@ const buildNextJsScript = (method, payload) => `
 require('next/dist/build/output/log').${method}(${payload})
 `
 
-const scenarios = [
+const nextScenarios = [
   // Next.js logger - basic messages
   [
     'next.js - wait - message',
@@ -67,8 +67,5 @@ const scenarios = [
   ],
 ]
 
-const filterScenarios = (...filters) =>
-  scenarios.filter(scenario => filters.some(filter => scenario[0].startsWith(filter)))
-
-module.exports = scenarios
-module.exports.filterScenarios = filterScenarios
+module.exports = [...nextScenarios]
+module.exports.next = nextScenarios
