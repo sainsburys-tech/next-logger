@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-export */
 const { exec } = require('child_process')
 const { promisify } = require('util')
 const os = require('os')
@@ -62,5 +63,5 @@ const scenarioRunner = (scenarios, preset) =>
     })
   })
 
-// eslint-disable-next-line jest/no-export
 module.exports = scenarioRunner
+module.exports.runScript = runScript

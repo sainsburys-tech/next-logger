@@ -8,6 +8,8 @@ This is a library to patch the logging functions used by [Next.js](https://nextj
 
 This works by importing Next.js' inbuilt [logger](https://github.com/vercel/next.js/blob/canary/packages/next/build/output/log.ts) via `require`, and replacing the logging methods with custom ones. It uses [`pino`](https://github.com/pinojs/pino) to output JSON formatted logs, preserving Next.js' message and prefix, but adding timestamp, hostname and more.
 
+From v2.0.0 onwards, this library also patches the global `console` methods, to catch additional logs that Next.js makes directly to `console`. While `pino` logging remains intact, this may cause issues with other libraries which patch or use `console` methods. Use the `next-only` preset to opt-out of this patching.
+
 ## Example Logs
 
 Before:
