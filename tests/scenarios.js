@@ -6,6 +6,22 @@ const buildConsoleScript = (method, payload) => `
 console.${method}(${payload})
 `
 
+const buildCustomErrorScript = name => `
+class ${name} extends Error {
+  constructor(...params) {
+    super(...params)
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, CustomError)
+    }
+
+    this.name = '${name}'
+  }
+}
+
+console.error(new ${name}('Message for ${name}'))
+`
+
 const nextScenarios = [
   // Next.js logger - basic messages
   [
@@ -132,6 +148,25 @@ const consoleScenarios = [
   ],
 ]
 
-module.exports = [...nextScenarios, ...consoleScenarios]
+const exceptionScenarios = [
+  [
+    'exception - error',
+    buildConsoleScript('error', "new Error('Message for error')"),
+    { level: 50, name: 'next.js', msg: expect.stringMatching(/^Error: Message for error\n/), prefix: 'error' },
+  ],
+  [
+    'exception - custom error',
+    buildCustomErrorScript('CustomError'),
+    {
+      level: 50,
+      name: 'CustomError',
+      msg: expect.stringMatching(/^CustomError: Message for CustomError\n/),
+      prefix: 'error',
+    },
+  ],
+]
+
+module.exports = [...nextScenarios, ...consoleScenarios, ...exceptionScenarios]
 module.exports.next = nextScenarios
 module.exports.console = consoleScenarios
+module.exports.exceptions = exceptionScenarios
