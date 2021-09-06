@@ -140,6 +140,16 @@ const consoleScenarios = [
     buildConsoleScript('error', "{ foo: 'Message for error' }"),
     { level: 50, name: 'next.js', msg: { foo: 'Message for error' }, prefix: 'error' },
   ],
+  [
+    'console.log - undefined',
+    buildConsoleScript('log', undefined),
+    { level: 50, name: 'next.js', prefix: 'error' },
+  ],
+  [
+    'console.log - null',
+    buildConsoleScript('log', null),
+    { level: 50, name: 'next.js', msg: null, prefix: 'error' },
+  ],
   // Sanity checks for Pino to make sure `console.*` isn't broken
   [
     'pino - sanity check',
