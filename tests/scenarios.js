@@ -143,12 +143,12 @@ const consoleScenarios = [
   [
     'console.log - undefined',
     buildConsoleScript('log', undefined),
-    { level: 50, name: 'next.js', prefix: 'error' },
+    { level: 30, name: 'next.js', prefix: 'log' },
   ],
   [
     'console.log - null',
     buildConsoleScript('log', null),
-    { level: 50, name: 'next.js', msg: null, prefix: 'error' },
+    { level: 30, name: 'next.js', msg: null, prefix: 'log' },
   ],
   // Sanity checks for Pino to make sure `console.*` isn't broken
   [
