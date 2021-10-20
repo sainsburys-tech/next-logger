@@ -63,3 +63,4 @@ const scenarioRunner = (scenarios, preset, scriptRunner = defaultScriptRunner) =
   })
 
 module.exports = scenarioRunner
+module.exports.runScript = defaultScriptRunner
