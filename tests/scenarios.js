@@ -204,3 +204,7 @@ module.exports = [...nextScenarios, ...consoleScenarios, ...exceptionScenarios]
 module.exports.next = nextScenarios
 module.exports.console = consoleScenarios
 module.exports.exceptions = exceptionScenarios
+
+module.exports.buildNextJsScript = buildNextJsScript
+module.exports.buildConsoleScript = buildConsoleScript
+module.exports.buildCustomErrorScript = buildCustomErrorScript
