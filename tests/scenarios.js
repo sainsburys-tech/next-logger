@@ -58,32 +58,39 @@ const nextScenarios = [
   [
     'next.js - wait - object',
     buildNextJsScript('wait', "{ foo: 'Message for wait' }"),
-    { level: 30, name: 'next.js', msg: { foo: 'Message for wait' }, prefix: 'wait' },
+    { level: 30, name: 'next.js', foo: 'Message for wait', prefix: 'wait' },
   ],
   [
     'next.js - error - object',
     buildNextJsScript('error', "{ foo: 'Message for error' }"),
-    { level: 50, name: 'next.js', msg: { foo: 'Message for error' }, prefix: 'error' },
+    { level: 50, name: 'next.js', foo: 'Message for error', prefix: 'error' },
   ],
   [
     'next.js - warn - object',
     buildNextJsScript('warn', "{ foo: 'Message for warn' }"),
-    { level: 40, name: 'next.js', msg: { foo: 'Message for warn' }, prefix: 'warn' },
+    { level: 40, name: 'next.js', foo: 'Message for warn', prefix: 'warn' },
   ],
   [
     'next.js - ready - object',
     buildNextJsScript('ready', "{ foo: 'Message for ready' }"),
-    { level: 30, name: 'next.js', msg: { foo: 'Message for ready' }, prefix: 'ready' },
+    { level: 30, name: 'next.js', foo: 'Message for ready', prefix: 'ready' },
   ],
   [
     'next.js - info - object',
     buildNextJsScript('info', "{ foo: 'Message for info' }"),
-    { level: 30, name: 'next.js', msg: { foo: 'Message for info' }, prefix: 'info' },
+    { level: 30, name: 'next.js', foo: 'Message for info', prefix: 'info' },
   ],
   [
     'next.js - event - object',
     buildNextJsScript('event', "{ foo: 'Message for event' }"),
-    { level: 30, name: 'next.js', msg: { foo: 'Message for event' }, prefix: 'event' },
+    { level: 30, name: 'next.js', foo: 'Message for event', prefix: 'event' },
+  ],
+  // Next.js logger - multiple arguments
+  [
+    'next.js - info - multiple arguments',
+    // https://github.com/vercel/next.js/blob/6852efff4578a3029a3fbdd01d73b725d3e48b9e/examples/with-aws-amplify/pages/index.js#L62
+    buildNextJsScript('warn', "'Error adding to do ', new Error('Boom')"),
+    { level: 40, name: 'next.js', msg: 'Error adding to do ', prefix: 'warn', err: { message: 'Boom', type: 'Error' } },
   ],
 ]
 
