@@ -99,56 +99,67 @@ const consoleScenarios = [
   [
     'console.log - message',
     buildConsoleScript('log', "'Message for log'"),
-    { level: 30, name: 'next.js', msg: 'Message for log', prefix: 'log' },
+    { level: 30, name: 'console', msg: 'Message for log' },
   ],
   [
     'console.debug - message',
     buildConsoleScript('debug', "'Message for debug'"),
-    { level: 30, name: 'next.js', msg: 'Message for debug', prefix: 'debug' },
+    { level: 20, name: 'console', msg: 'Message for debug' },
   ],
   [
     'console.info - message',
     buildConsoleScript('info', "'Message for info'"),
-    { level: 30, name: 'next.js', msg: 'Message for info', prefix: 'info' },
+    { level: 30, name: 'console', msg: 'Message for info' },
   ],
   [
     'console.warn - message',
     buildConsoleScript('warn', "'Message for warn'"),
-    { level: 40, name: 'next.js', msg: 'Message for warn', prefix: 'warn' },
+    { level: 40, name: 'console', msg: 'Message for warn' },
   ],
   [
     'console.error - message',
     buildConsoleScript('error', "'Message for error'"),
-    { level: 50, name: 'next.js', msg: 'Message for error', prefix: 'error' },
+    { level: 50, name: 'console', msg: 'Message for error' },
   ],
   // Console error - object
   [
     'console.log - object',
     buildConsoleScript('log', "{ foo: 'Message for log' }"),
-    { level: 30, name: 'next.js', msg: { foo: 'Message for log' }, prefix: 'log' },
+    { level: 30, name: 'console', foo: 'Message for log' },
   ],
   [
     'console.debug - object',
     buildConsoleScript('debug', "{ foo: 'Message for debug' }"),
-    { level: 30, name: 'next.js', msg: { foo: 'Message for debug' }, prefix: 'debug' },
+    { level: 20, name: 'console', foo: 'Message for debug' },
   ],
   [
     'console.info - object',
     buildConsoleScript('info', "{ foo: 'Message for info' }"),
-    { level: 30, name: 'next.js', msg: { foo: 'Message for info' }, prefix: 'info' },
+    { level: 30, name: 'console', foo: 'Message for info' },
   ],
   [
     'console.warn - object',
     buildConsoleScript('warn', "{ foo: 'Message for warn' }"),
-    { level: 40, name: 'next.js', msg: { foo: 'Message for warn' }, prefix: 'warn' },
+    { level: 40, name: 'console', foo: 'Message for warn' },
   ],
   [
     'console.error - object',
     buildConsoleScript('error', "{ foo: 'Message for error' }"),
-    { level: 50, name: 'next.js', msg: { foo: 'Message for error' }, prefix: 'error' },
+    { level: 50, name: 'console', foo: 'Message for error' },
   ],
-  ['console.log - undefined', buildConsoleScript('log', undefined), { level: 30, name: 'next.js', prefix: 'log' }],
-  ['console.log - null', buildConsoleScript('log', null), { level: 30, name: 'next.js', msg: null, prefix: 'log' }],
+  ['console.log - undefined', buildConsoleScript('log', undefined), { level: 30, name: 'console' }],
+  ['console.log - null', buildConsoleScript('log', null), { level: 30, name: 'console', msg: null }],
+  [
+    'console.warn - error object',
+    // https://github.com/vercel/next.js/blob/6852efff4578a3029a3fbdd01d73b725d3e48b9e/examples/with-aws-amplify/pages/index.js#L62
+    buildConsoleScript('warn', "'Error adding to do ', new Error('Boom')"),
+    {
+      level: 40,
+      name: 'console',
+      msg: 'Error adding to do ',
+      err: { message: 'Boom', type: 'Error', stack: expect.stringMatching(/Error: Boom\n *?at \[eval\]/) },
+    },
+  ],
   // Sanity checks for Pino to make sure `console.*` isn't broken
   [
     'pino - sanity check',
@@ -161,16 +172,30 @@ const exceptionScenarios = [
   [
     'exception - error',
     buildConsoleScript('error', "new Error('Message for error')"),
-    { level: 50, name: 'next.js', msg: expect.stringMatching(/^Error: Message for error\n/), prefix: 'error' },
+    {
+      level: 50,
+      name: 'console',
+      msg: 'Message for error',
+      err: {
+        message: 'Message for error',
+        stack: expect.stringMatching(/Error: Message for error\n *?at \[eval\]/),
+        type: 'Error',
+      },
+    },
   ],
   [
     'exception - custom error',
     buildCustomErrorScript('CustomError'),
     {
       level: 50,
-      name: 'CustomError',
-      msg: expect.stringMatching(/^CustomError: Message for CustomError\n/),
-      prefix: 'error',
+      name: 'console',
+      msg: 'Message for CustomError',
+      err: {
+        message: 'Message for CustomError',
+        name: 'CustomError',
+        stack: expect.stringMatching(/CustomError: Message for CustomError\n *?at \[eval\]/),
+        type: 'CustomError',
+      },
     },
   ],
 ]
