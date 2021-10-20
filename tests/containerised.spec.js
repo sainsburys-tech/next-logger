@@ -3,8 +3,6 @@ const { GenericContainer } = require('testcontainers')
 const scenarios = require('./scenarios')
 const scenarioRunner = require('./runner')
 
-jest.setTimeout(60000)
-
 describe('containerised tests', () => {
   let container
 
@@ -17,7 +15,7 @@ describe('containerised tests', () => {
   beforeAll(async () => {
     const builder = await GenericContainer.fromDockerfile(process.cwd(), 'tests/docker/Dockerfile').build()
     container = await builder.withCmd(['top']).start()
-  })
+  }, 60000)
 
   afterAll(async () => {
     await container.stop()
