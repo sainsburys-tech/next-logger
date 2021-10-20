@@ -41,6 +41,7 @@
     "testcontainers": "^7.21.0"
   },
   "dependencies": {
+    "cosmiconfig": "^7.0.1",
     "pino": "^7.0.2"
   },
   "jest": {
