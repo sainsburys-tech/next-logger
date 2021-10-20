@@ -66,6 +66,23 @@ The following presets are supported:
 - `next-logger/presets/all` - this includes all the patches this library supports. Using the library without a preset specified will use this preset.
 - `next-logger/presets/next-only` - this only includes patches specifically for the Next.js logger object.
 
+### Custom Logger
+
+By default, this library uses an instance of Pino with a modified [`logMethod`](https://getpino.io/#/docs/api?id=logmethod), to give reasonable out-the-box behaviour for JSON logging. If you need logs in a different format, for example to change the message field or transform logged objects, you can provide your own instance of Pino to the library.
+
+This is done by creating a `next-logger.config.js` file in the root of your project. The file should be a CommonJS module, and your custom Pino instance should be exported in a field called `logger`. For example:
+
+```js
+// next-logger.config.js
+const pino = require('pino')
+
+const logger = pino({ messageKey: 'message', mixin: () => ({ name: 'custom-pino-instance' }) })
+
+module.exports = {
+  logger,
+}
+```
+
 ## Breaking Changes on >=1.0.0
 
 This package name, `next-logger` has been inherited from [@frank47](https://github.com/franky47), who had deprecated their published logging middleware for Next.js. The original package and this one aim to solve similar problems for JSON logging in Next.js. However, the implementation and usage of this solution is significantly different from the original, which was published up to `v0.4.0`. To minimise unexpected issues for previous users of the original `next-logger`, the new package begins at major `v1.0.0`.
