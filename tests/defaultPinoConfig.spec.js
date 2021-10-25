@@ -3,11 +3,11 @@ const { promisify } = require('util')
 
 const execAsync = promisify(exec)
 
-describe('defaultLogger', () => {
+describe('defaultPinoConfig', () => {
   const logArgs = async (args, method = 'info') => {
     // This is needed to escape double quotes in arguments. For example, turning "Hello World" into \"Hello World\"
     const safeArgs = args.map(arg => String(arg).replace(/"/g, '\\"')).join(',')
-    const process = execAsync(`node -e "require('./lib/defaultLogger').${method}(${safeArgs})"`)
+    const process = execAsync(`node -e "require('pino')(require('./lib/defaultPinoConfig')).${method}(${safeArgs})"`)
     const { stdout } = await process
     return JSON.parse(stdout.trim())
   }
