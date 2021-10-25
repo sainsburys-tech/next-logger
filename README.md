@@ -70,13 +70,20 @@ The following presets are supported:
 
 By default, this library uses an instance of Pino with a modified [`logMethod`](https://getpino.io/#/docs/api?id=logmethod), to give reasonable out-the-box behaviour for JSON logging. If you need logs in a different format, for example to change the message field or transform logged objects, you can provide your own instance of Pino to the library.
 
-This is done by creating a `next-logger.config.js` file in the root of your project. The file should be a CommonJS module, and your custom Pino instance should be exported in a field called `logger`. For example:
+This is done by creating a `next-logger.config.js` file in the root of your project. The file should be a CommonJS module, and a function returning your custom Pino instance should be exported in a field called `logger`. This function will be called with the library's default Pino configuration, to allow you to extend it's behaviour (or completely replace it).
+
+For example:
 
 ```js
 // next-logger.config.js
 const pino = require('pino')
 
-const logger = pino({ messageKey: 'message', mixin: () => ({ name: 'custom-pino-instance' }) })
+const logger = defaultConfig =>
+  pino({
+    ...defaultConfig,
+    messageKey: 'message',
+    mixin: () => ({ name: 'custom-pino-instance' }),
+  })
 
 module.exports = {
   logger,
