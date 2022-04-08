@@ -78,7 +78,7 @@ For example:
 // next-logger.config.js
 const pino = require('pino')
 
-const logger = defaultConfig =>
+const logger = (defaultConfig) =>
   pino({
     ...defaultConfig,
     messageKey: 'message',
