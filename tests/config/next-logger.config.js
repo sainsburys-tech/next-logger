@@ -1,6 +1,6 @@
 const pino = require('pino')
 
-const logger = defaultConfig =>
+const logger = (defaultConfig) =>
   pino({
     ...defaultConfig,
     messageKey: 'message',
