@@ -54,7 +54,8 @@
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
-    "pino": "^7.10.0"
+    "pino": "^7.10.0",
+    "ts-extras": "^0.10.1"
   },
   "jest": {
     "resetMocks": true,
