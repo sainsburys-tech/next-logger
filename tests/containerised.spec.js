@@ -6,15 +6,19 @@ const scenarioRunner = require('./runner')
 describe('containerised tests', () => {
   let container
 
-  const runScriptInDocker = async (script, preset) => {
+  const runScriptInDocker = async (script, preset, nextVersion = 12) => {
     const entrypoint = preset ? `next-logger/presets/${preset}` : 'next-logger'
-    const { output } = await container.exec(['node', '-r', entrypoint, '-e', script])
+    const { output } = await container.exec(['cd', `next${nextVersion}`, '&&', 'node', '-r', entrypoint, '-e', script])
     return { stdout: output, stderr: '' }
   }
 
   beforeAll(async () => {
     const builder = await GenericContainer.fromDockerfile(process.cwd(), 'tests/docker/Dockerfile').build()
-    container = await builder.withCmd(['top']).start()
+
+    container = await builder
+      .withCopyFileToContainer('.', 'node_modules/next-logger')
+      .withCmd(['cd node_modules/next-logger && npm install --production && top'])
+      .start()
   }, 60000)
 
   afterAll(async () => {
