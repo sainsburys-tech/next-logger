@@ -1,0 +1,9 @@
+{
+  "extends": "@tsconfig/node16-strictest/tsconfig.json",
+  "compilerOptions": {
+    // Should be included in strictest but 🤷‍♂️
+    "allowJs": true,
+    // See: https://github.com/tsconfig/bases/pull/88
+  },
+  "include": ["**/*.js"]
+}
