@@ -26,7 +26,7 @@ export type supportedConsoleMethods = keyof Pick<
   | 'info'
   | 'log'
   | 'table'
-  | 'debug'
+  // | 'debug'
   | 'trace'
 >
 
