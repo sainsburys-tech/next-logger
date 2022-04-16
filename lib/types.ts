@@ -50,7 +50,7 @@ export type argShuffler = (
 
 export type strictArgShuffler = (
   ...args: any[]
-) => [simpleDataToLog, string] | [string]
+) => undefined | [simpleDataToLog, string] | [string]
 
 export type nextShuffler = (
   ...args: string[]
