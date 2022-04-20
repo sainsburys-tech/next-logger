@@ -33,3 +33,8 @@ export type createPinoCompatibleConsoleFunction = (
 export type argShuffler = (
   ...args: any[]
 ) => Parameters<import('pino').LogFn>
+
+export type hasOwn = <RecordKeys extends string>(
+  record: Readonly<Record<RecordKeys, unknown>>,
+  key: string,
+) => key is RecordKeys
