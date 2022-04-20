@@ -34,6 +34,10 @@ export type argShuffler = (
   ...args: any[]
 ) => Parameters<import('pino').LogFn>
 
+export type nextShuffler = (
+  ...args: string[]
+) => [string]
+
 export type hasOwn = <RecordKeys extends string>(
   record: Readonly<Record<RecordKeys, unknown>>,
   key: string,
