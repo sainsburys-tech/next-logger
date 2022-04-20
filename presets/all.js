@@ -1,2 +1,2 @@
-require('../lib/patches/next')
+require('../lib/patches/next/index')
 require('../lib/patches/console')
