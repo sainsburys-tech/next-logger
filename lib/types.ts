@@ -1,3 +1,17 @@
+type simpleDataToLog =
+  | Record<string, unknown>
+  | string
+  | string[]
+  | Record<string, unknown>[]
+  | Error
+  | ((...args: any[]) => any)
+
+/** May be great for consumers to do their own thing with. */
+export type PinoCompatibleStrictConsoleMethod = (
+  label: string,
+  data?: simpleDataToLog,
+) => void
+
 /**
  * Other methods are not supported YET
  * These methods simply accept strings and objects
@@ -33,6 +47,10 @@ export type createPinoCompatibleConsoleFunction = (
 export type argShuffler = (
   ...args: any[]
 ) => Parameters<import('pino').LogFn>
+
+export type strictArgShuffler = (
+  ...args: any[]
+) => undefined | [simpleDataToLog, string] | [string]
 
 export type nextShuffler = (
   ...args: string[]
