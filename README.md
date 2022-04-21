@@ -90,6 +90,11 @@ module.exports = {
 }
 ```
 
+## Development tips
+
+Using `yarn link` means the next.js won't ACTUALLY monkey patch next.js in your project.
+Use `yalc publish/yalc add` instead.
+
 ## Breaking Changes on >=1.0.0
 
 This package name, `next-logger` has been inherited from [@frank47](https://github.com/franky47), who had deprecated their published logging middleware for Next.js. The original package and this one aim to solve similar problems for JSON logging in Next.js. However, the implementation and usage of this solution is significantly different from the original, which was published up to `v0.4.0`. To minimise unexpected issues for previous users of the original `next-logger`, the new package begins at major `v1.0.0`.
