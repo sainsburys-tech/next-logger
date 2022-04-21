@@ -52,6 +52,10 @@ export type strictArgShuffler = (
   ...args: any[]
 ) => [simpleDataToLog, string] | [string]
 
+export type nextShuffler = (
+  ...args: string[]
+) => [string]
+
 export type hasOwn = <RecordKeys extends string>(
   record: Readonly<Record<RecordKeys, unknown>>,
   key: string,
