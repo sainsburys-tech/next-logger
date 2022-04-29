@@ -55,7 +55,7 @@
   "dependencies": {
     "cosmiconfig": "^7.0.1",
     "object-typed": "^1.0.0",
-    "pino": "^7.10.0"
+    "pino": "^7.11.0"
   },
   "jest": {
     "resetMocks": true,
