@@ -2,6 +2,10 @@
 
 JSON logging patcher for Next.js
 
+## Fork notes
+
+See open PR in original repo from @atkinchris: https://github.com/atkinchris/next-logger/pull/15
+
 ## Description
 
 This is a library to patch the logging functions used by [Next.js](https://nextjs.org/), to have them output to `stdout` as newline-delimited JSON. This allows a Next.js application to log service events in a format that's compatible with log aggregators, without needing a custom Next.js server.
