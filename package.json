@@ -38,7 +38,7 @@
     "jest": "^28.1.2",
     "next": "^12.1.4",
     "prettier": "^2.7.1",
-    "testcontainers": "^7.21.0"
+    "testcontainers": "^8.11.0"
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
