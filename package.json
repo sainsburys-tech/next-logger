@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
-    "pino": "^7.0.2"
+    "pino": "^8.7.0"
   },
   "jest": {
     "resetMocks": true,
