@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
+    "object-typed": "^0.1.0",
     "pino": "^7.10.0"
   },
   "jest": {
