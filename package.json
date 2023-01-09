@@ -7,7 +7,7 @@
   "scripts": {
     "format:all": "prettier --write .",
     "lint": "eslint .",
-    "prepare": "git config --local core.eol lf && git config --local core.autocrlf false && git config --local blame.ignoreRevsFile .git-blame-ignore-revs",
+    "prepare": "git config --local core.eol lf && git config --local core.autocrlf false && git config --local blame.ignoreRevsFile .git-blame-ignore-revs || echo 'git not available, skipping git config step'",
     "prepublish": "npm run generate-type-defs",
     "test": "jest --runInBand",
     "type-check": "tsc --pretty",
@@ -54,8 +54,8 @@
   },
   "dependencies": {
     "cosmiconfig": "^7.0.1",
-    "object-typed": "^0.1.0",
-    "pino": "^7.10.0"
+    "object-typed": "^1.0.0",
+    "pino": "^7.11.0"
   },
   "jest": {
     "resetMocks": true,
