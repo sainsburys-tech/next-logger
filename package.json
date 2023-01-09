@@ -4,7 +4,9 @@
   "description": "JSON logging patcher for Next.js",
   "main": "index.js",
   "scripts": {
+    "format:all": "prettier --write .",
     "lint": "eslint .",
+    "prepare": "git config --local core.eol lf && git config --local core.autocrlf false && git config --local blame.ignoreRevsFile .git-blame-ignore-revs",
     "test": "jest --runInBand",
     "type-check": "tsc --pretty --noEmit"
   },
@@ -32,6 +34,7 @@
   "devDependencies": {
     "@tsconfig/node16-strictest": "^1.0.0",
     "@types/node": "^16.x.x",
+    "@types/prettier": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
     "eslint": "^8.19.0",
