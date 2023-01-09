@@ -3,5 +3,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "files.exclude": {
+    "**/types": true
+  },
+
   "typescript.tsdk": "node_modules/typescript/lib"
 }
