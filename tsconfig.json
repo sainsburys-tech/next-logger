@@ -2,8 +2,22 @@
   "extends": "@tsconfig/node16-strictest/tsconfig.json",
   "compilerOptions": {
     // Should be included in strictest but 🤷‍♂️
-    "allowJs": true
+    "allowJs": true,
     // See: https://github.com/tsconfig/bases/pull/88
+
+    // Copied from: https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html#tsconfig
+    // Generate d.ts files
+    "declaration": true,
+    // only output d.ts files
+    "emitDeclarationOnly": true,
+    // Types should go into this directory.
+    // Removing this would place the .d.ts files
+    // next to the .js files
+    "outDir": "types",
+    // go to js file when using IDE functions like
+    // "Go to Definition" in VSCode
+    "declarationMap": true
   },
-  "include": ["**/*.js"]
+  "include": ["lib/**/*.js"],
+  "exclude": ["tests/**/*"]
 }

@@ -3,12 +3,15 @@
   "version": "3.0.1",
   "description": "JSON logging patcher for Next.js",
   "main": "index.js",
+  "types": "./types/index.js",
   "scripts": {
     "format:all": "prettier --write .",
     "lint": "eslint .",
     "prepare": "git config --local core.eol lf && git config --local core.autocrlf false && git config --local blame.ignoreRevsFile .git-blame-ignore-revs || echo 'git not available, skipping git config step'",
+    "prepublish": "npm run generate-type-defs",
     "test": "jest --runInBand",
-    "type-check": "tsc --pretty --noEmit"
+    "type-check": "tsc --pretty",
+    "generate-type-defs": "tsc --pretty"
   },
   "repository": {
     "type": "git",
