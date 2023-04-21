@@ -15,7 +15,10 @@ describe('config', () => {
   beforeAll(async () => {
     const builder = await GenericContainer.fromDockerfile(process.cwd(), 'tests/docker/Dockerfile').build()
     const configFilePath = path.resolve(__dirname, 'config/next-logger.config.js')
-    container = await builder.withBindMount(configFilePath, '/app/next-logger.config.js', 'ro').withCmd(['top']).start()
+    container = await builder
+      .withBindMounts([{ source: configFilePath, target: '/app/next-logger.config.js', mode: 'ro' }])
+      .withCommand(['top'])
+      .start()
   }, 60000)
 
   afterAll(async () => {

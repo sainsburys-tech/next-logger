@@ -14,7 +14,7 @@ describe('containerised tests', () => {
 
   beforeAll(async () => {
     const builder = await GenericContainer.fromDockerfile(process.cwd(), 'tests/docker/Dockerfile').build()
-    container = await builder.withCmd(['top']).start()
+    container = await builder.withCommand(['top']).start()
   }, 60000)
 
   afterAll(async () => {
