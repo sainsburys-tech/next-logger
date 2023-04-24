@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atkinchris/next-logger.git"
+    "url": "git+https://github.com/sainsburys-tech/next-logger.git"
   },
   "keywords": [
     "next.js",
@@ -19,12 +19,12 @@
     "log",
     "json"
   ],
-  "author": "Chris Atkin <atkinchris@gmail.com>",
+  "author": "Chris Atkin <christopher.atkin@sainsburys.co.uk>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/atkinchris/next-logger/issues"
+    "url": "https://github.com/sainsburys-tech/next-logger/issues"
   },
-  "homepage": "https://github.com/atkinchris/next-logger#readme",
+  "homepage": "https://github.com/sainsburys-tech/next-logger#readme",
   "peerDependencies": {
     "next": ">=9.0.0"
   },
