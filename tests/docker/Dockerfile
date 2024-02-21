@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install Next.js before copying files, to allow the layer to be cached by Docker
 RUN npm init -y
-RUN npm install next@12 pino@8
+RUN npm install next@14 pino@8
 
 # Copy the library files from the working directory
 COPY . node_modules/next-logger
