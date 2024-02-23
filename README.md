@@ -72,6 +72,8 @@ By default, this library uses an instance of Pino with a modified [`logMethod`](
 
 This is done by creating a `next-logger.config.js` file in the root of your project. The file should be a CommonJS module, and a function returning your custom Pino instance should be exported in a field called `logger`. This function will be called with the library's default Pino configuration, to allow you to extend it's behaviour (or completely replace it).
 
+The instance returned by the function must implement a `.child` method, which will be called to create the child loggers for each log method.
+
 For example:
 
 ```js
@@ -84,6 +86,25 @@ const logger = defaultConfig =>
     messageKey: 'message',
     mixin: () => ({ name: 'custom-pino-instance' }),
   })
+
+module.exports = {
+  logger,
+}
+```
+
+Or with [`winston`](https://github.com/winstonjs/winston):
+
+```js
+const { createLogger, format, transports } = require('winston')
+
+const logger = createLogger({
+  transports: [
+    new transports.Console({
+      handleExceptions: true,
+      format: format.combine(format.colorize(), format.simple()),
+    }),
+  ],
+})
 
 module.exports = {
   logger,
