@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Simulate a production environment
 ENV NODE_ENV=production
