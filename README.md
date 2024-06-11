@@ -97,14 +97,15 @@ Or with [`winston`](https://github.com/winstonjs/winston):
 ```js
 const { createLogger, format, transports } = require('winston')
 
-const logger = createLogger({
-  transports: [
-    new transports.Console({
-      handleExceptions: true,
-      format: format.combine(format.colorize(), format.simple()),
-    }),
-  ],
-})
+const logger = defaultConfig =>
+  createLogger({
+    transports: [
+      new transports.Console({
+        handleExceptions: true,
+        format: format.json(),
+      }),
+    ],
+  })
 
 module.exports = {
   logger,
