@@ -6,7 +6,7 @@ JSON logging patcher for Next.js
 
 This is a library to patch the logging functions used by [Next.js](https://nextjs.org/), to have them output to `stdout` as newline-delimited JSON. This allows a Next.js application to log service events in a format that's compatible with log aggregators, without needing a custom Next.js server.
 
-This works by importing Next.js' inbuilt [logger](https://github.com/vercel/next.js/blob/canary/packages/next/build/output/log.ts) via `require`, and replacing the logging methods with custom ones. It uses [`pino`](https://github.com/pinojs/pino) to output JSON formatted logs, preserving Next.js' message and prefix, but adding timestamp, hostname and more.
+This works by importing Next.js' inbuilt [logger](https://github.com/vercel/next.js/blob/canary/packages/next/build/output/log.ts) via `require`, and replacing the logging methods with custom ones. It uses [`pino`](https://github.com/pinojs/pino) to output JSON formatted logs, preserving Next.js' message and prefix, but adding timestamp, hostname and more. Although the library was mainly developed based on `pino`, it also supports [`winston`](https://github.com/winstonjs/winston) as the logger backend. See the [Custom Logger](#custom-logger) section below for more details.
 
 From v2.0.0 onwards, this library also patches the global `console` methods, to catch additional logs that Next.js makes directly to `console`. While `pino` logging remains intact, this may cause issues with other libraries which patch or use `console` methods. Use the `next-only` preset to opt-out of this patching.
 
@@ -30,14 +30,14 @@ After:
 
 ## Usage
 
-First, install this package. You can do this with whatever Node package manager you're using in your project.
+First, install this package and `pino`. You can do this with whatever Node package manager you're using in your project.
 
 ```sh
-npm install next-logger
+npm install next-logger pino
 
 # or for Yarn
 
-yarn add next-logger
+yarn add next-logger pino
 ```
 
 Then add a [`NODE_OPTIONS`](https://nextjs.org/docs/api-reference/cli) string to your Next.js start script, to require in the logger.
@@ -92,7 +92,11 @@ module.exports = {
 }
 ```
 
-Or with [`winston`](https://github.com/winstonjs/winston):
+Or with `winston`:
+
+```sh
+npm install winston
+```
 
 ```js
 const { createLogger, format, transports } = require('winston')
