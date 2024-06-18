@@ -40,26 +40,30 @@ npm install next-logger pino
 yarn add next-logger pino
 ```
 
-Then add a [`NODE_OPTIONS`](https://nextjs.org/docs/api-reference/cli) string to your Next.js start script, to require in the logger.
+Then use the Next [Instrumentation](https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation) hook to load this library.
 
-```sh
-NODE_OPTIONS='-r next-logger' next start
-```
-
-### Adding to `package.json` Scripts
-
-You can add this directly to your `package.json` scripts, to make it easier to start your service.
-
-```json
-"scripts": {
-  "start": "NODE_OPTIONS='-r next-logger' next start",
-  // ...your other scripts
-},
-```
+- Create `instrumentation.ts|js` file in the root directory of your project (or inside the src folder if using one)
+  ```js
+  export async function register() {
+    if (process.env.NEXT_RUNTIME === 'nodejs') {
+      await require('pino')
+      await require('next-logger')
+    }
+  }
+  ```
+- Enable the instrumentation hook in `next.config.js`
+  ```js
+  const nextConfig = {
+    // [...]
+    experimental: {
+      instrumentationHook: true,
+    },
+  }
+  ```
 
 ### Presets
 
-To support opting out of some patches, this library supports "presets". These can be used as above, with `/presets/<PRESET_NAME>` appended, for example: `NODE_OPTIONS='-r next-logger/presets/next-only'`.
+To support opting out of some patches, this library supports "presets". These can be used as above, with `/presets/<PRESET_NAME>` appended, for example: `await require("next-logger/presets/next-only")`.
 
 The following presets are supported:
 
