@@ -6,8 +6,15 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: monthly
+      interval: daily
+    groups:
+      dev-dependencies:
+        dependency-type: development
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: daily
+    groups:
+      actions-deps:
+        patterns:
+          - "*"
