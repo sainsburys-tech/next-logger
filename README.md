@@ -123,3 +123,15 @@ module.exports = {
 ## Breaking Changes on >=1.0.0
 
 This package name, `next-logger` has been inherited from [@frank47](https://github.com/franky47), who had deprecated their published logging middleware for Next.js. The original package and this one aim to solve similar problems for JSON logging in Next.js. However, the implementation and usage of this solution is significantly different from the original, which was published up to `v0.4.0`. To minimise unexpected issues for previous users of the original `next-logger`, the new package begins at major `v1.0.0`.
+
+## Release changes
+
+Changes are published to `npm`, however with 2FA rules in place for security, this cannot be achieved through GitHub Actions at this time. To release a new version, merge all work intended to be in the release, and then follow these steps:
+
+```sh
+npm version <major|minor|patch>
+git push --follow-tags
+npm publish
+```
+
+Then create a new release on GitHub, pointing to the tag created by `npm version`.
